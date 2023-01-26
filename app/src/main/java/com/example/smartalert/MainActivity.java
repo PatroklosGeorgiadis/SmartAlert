@@ -1,11 +1,15 @@
 package com.example.smartalert;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     EditText email,password,data;
@@ -18,5 +22,20 @@ public class MainActivity extends AppCompatActivity {
         password=findViewById(R.id.editTextTextPersonName3);
         //data = findViewById(R.id.editTextTextPersonName3);
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    public void signin(View view){
+        mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+                .addOnCompleteListener((task)->{
+                    if(task.isSuccessful()){
+                        showMessage("Success!","Ok");
+                    }else {
+                        showMessage("Error", Objects.requireNonNull(task.getException()).getLocalizedMessage());
+                    }
+                });
+    }
+
+    void showMessage(String title, String message){
+        new AlertDialog.Builder(this).setTitle(title).setMessage(message).setCancelable(true).show();
     }
 }
