@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SmartAlert</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
 </resources>
