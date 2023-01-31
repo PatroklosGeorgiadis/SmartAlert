@@ -35,7 +35,7 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             showMessage("Success!","User authenticated");
-                            showMessage("Success!",mAuth.getUid());
+                            //showMessage("Success!",mAuth.getUid());
                         }else {
                             showMessage("Error",task.getException().getLocalizedMessage());
                         }
