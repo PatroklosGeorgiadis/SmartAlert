@@ -2,4 +2,7 @@
     <string name="app_name">SmartAlert</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up_tip">If you don\'t have an account, Sign up instead</string>
 </resources>
