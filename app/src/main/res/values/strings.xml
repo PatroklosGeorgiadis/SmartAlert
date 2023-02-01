@@ -5,4 +5,9 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up_tip">If you don\'t have an account, Sign up instead</string>
+    <string name="enter_your_role">Enter your role</string>
+    <string-array name="roles_array">
+        <item>User</item>
+        <item>Employee</item>
+    </string-array>
 </resources>

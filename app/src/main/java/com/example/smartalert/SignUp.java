@@ -6,26 +6,43 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUp extends AppCompatActivity {
 
-    EditText email,password,role;
+    EditText email,password;
+    Spinner dropdown;
     FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    //DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        dropdown = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.roles_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter);
+
         email= findViewById(R.id.editTextTextPersonName);
         password=findViewById(R.id.editTextTextPersonName4);
         //role = findViewById(R.id.editTextTextPersonName3);
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
     }
 
     public void signup(View view){
@@ -35,13 +52,15 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             showMessage("Success!","User authenticated");
-                            //showMessage("Success!",mAuth.getUid());
+                            DatabaseReference ref2 = database.getReference("Users");
+                            ref2.child(mAuth.getUid()).setValue(dropdown.getSelectedItem().toString());
                         }else {
                             showMessage("Error",task.getException().getLocalizedMessage());
                         }
                     }
                 });
     }
+
     void showMessage(String title, String message){
         new AlertDialog.Builder(this).setTitle(title).setMessage(message).setCancelable(true).show();
     }
