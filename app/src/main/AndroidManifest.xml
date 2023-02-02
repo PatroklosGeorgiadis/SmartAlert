@@ -12,6 +12,9 @@
         android:theme="@style/Theme.SmartAlert"
         tools:targetApi="31">
         <activity
+            android:name=".Submission"
+            android:exported="false" />
+        <activity
             android:name=".UserActivity"
             android:exported="false" />
         <activity

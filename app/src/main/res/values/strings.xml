@@ -7,10 +7,11 @@
     <string name="sign_up_tip">If you don\'t have an account, Sign up instead</string>
     <string name="enter_your_role">Enter your role</string>
     <string name="tornado">Tornado</string>
-    <string name="earthquakes">Earthquakes</string>
+    <string name="earthquakes">Earthquake</string>
     <string name="fire">Fire</string>
     <string name="flood">Flood</string>
     <string name="choosing_natural_disaster">Please choose the type of emergency you are witnessing</string>
+    <string name="submit">Submit</string>
     <string-array name="roles_array">
         <item>User</item>
         <item>Employee</item>
