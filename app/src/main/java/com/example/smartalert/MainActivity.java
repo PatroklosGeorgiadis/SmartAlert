@@ -1,5 +1,6 @@
 package com.example.smartalert;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,13 +10,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     EditText email,password,data;
     FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +32,32 @@ public class MainActivity extends AppCompatActivity {
         password=findViewById(R.id.editTextTextPersonName3);
         //data = findViewById(R.id.editTextTextPersonName3);
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference();
     }
 
     public void signin(View view){
         mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString())
                 .addOnCompleteListener((task)->{
                     if(task.isSuccessful()){
-                        showMessage("Success!","Ok");
+                        reference.child("Users").child(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if (!task.isSuccessful()) {
+                                    showMessage("Error","Unexpected error");
+                                }
+                                else {
+                                    if(String.valueOf(task.getResult().getValue()).equals("Employee")){
+                                        Intent intent = new Intent(MainActivity.this, EmployeeActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else{
+                                        Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                            }
+                        });
                     }else {
                         showMessage("Error", Objects.requireNonNull(task.getException()).getLocalizedMessage());
                     }
@@ -40,11 +67,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, SignUp.class);
         startActivity(intent);
     }
+
     void showMessage(String title, String message){
         new AlertDialog.Builder(this).setTitle(title).setMessage(message).setCancelable(true).show();
-    }
-
-    public void go_submission(View view) {
-
     }
 }
