@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class UserActivity extends AppCompatActivity {
-
     String ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

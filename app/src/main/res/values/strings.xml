@@ -12,6 +12,8 @@
     <string name="flood">Flood</string>
     <string name="choosing_natural_disaster">Please choose the type of emergency you are witnessing</string>
     <string name="submit">Submit</string>
+    <string name="name_some_details">Please name some details about the current situation</string>
+    <string name="details_eaxmple">e.g. There is a fire spreading towards the east from here</string>
     <string-array name="roles_array">
         <item>User</item>
         <item>Employee</item>
