@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartAlert</string>
+    <string name="enter_your_email">Εισάγετε το email σας</string>
+    <string name="enter_your_password">Εισάγετε τον κωδικό πρόσβασης</string>
+    <string name="sign_up">Δημιουργία Λογαριασμού</string>
+    <string name="sign_in">Συνδεθείτε</string>
+    <string name="sign_up_tip">Αν δεν έχετε λογαριασμό, εγγραφείτε</string>
+    <string name="enter_your_role">Εισάγετε τον ρόλο σας</string>
+    <string name="tornado">Ανεμοστρόβιλος</string>
+    <string name="earthquakes">Σεισμός</string>
+    <string name="fire">Πυρκαγιά</string>
+    <string name="flood">Πλημμύρα</string>
+    <string name="choosing_natural_disaster">Επιλέξτε τον τύπο έκτακτης ανάγκης που παρακολουθείτε</string>
+    <string name="submit">Υποβολή</string>
+    <string name="name_some_details">Παρακαλώ αναφέρετε ορισμένες λεπτομέρειες σχετικά με την τρέχουσα κατάσταση</string>
+    <string name="details_eaxmple">π.χ. Από εδώ εξαπλώνεται φωτιά προς τα ανατολικά</string>
+</resources>
