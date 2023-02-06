@@ -26,6 +26,8 @@ public class EmployeeActivity extends AppCompatActivity {
     List<String> checked = new ArrayList<>();
     long timeC,timeD;
     @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+    int Radius = 6371; // radius of the earth in km
+    double x,y,distance;
     FirebaseDatabase database;
     DatabaseReference reference;
     @Override
@@ -59,6 +61,7 @@ public class EmployeeActivity extends AppCompatActivity {
                    } catch (ParseException e) {
                        throw new RuntimeException(e);
                    }
+                   Double[] lat_long1 = string2latlong(d.child("Location").getValue().toString());
                    for(DataSnapshot c : snapshot.getChildren()){
                        String dtc = c.child("TimeStamp").getValue().toString();
                        try {
@@ -69,14 +72,22 @@ public class EmployeeActivity extends AppCompatActivity {
                        } catch (ParseException e) {
                            throw new RuntimeException(e);
                        }
+                       //calculating the time interval between the 2 reports
                        int time = (int) (timeD - timeC);
+                       //calculating the proximity of the 2 reports
+                       Double[] lat_long2 = string2latlong(c.child("Location").getValue().toString());
+                       x = (lat_long2[1]-lat_long1[1]) * Math.cos((lat_long1[0]+lat_long2[0])/2);
+                       y = (lat_long2[0]-lat_long1[0]);
+                       distance = Math.sqrt(x*x + y*y) * Radius;  // distance in km
                        /*Checking if: a) these reports are from different users or not
-                       * b) if they are the same type of emergency
-                       * c) if they've been reported in a time period of 30 minutes*/
+                       * b) they are the same type of emergency
+                       * c) they've been reported in a time period of 30 minutes
+                       * d) they have a proximity of 3 kilometers*/
                        if(!d.getKey().equals(c.getKey())
                                &&d.child("Emergency").getValue().toString().equals(c.child("Emergency").getValue().toString())
-                               &&Math.abs(time)<1800000){
-                           t.setText(String.valueOf(time));
+                               &&Math.abs(time)<1800000
+                               &&distance<3){
+                           t.setText(String.valueOf(distance));
                            //Removing "duplicates"
                            checked.add(c.getKey());
                        }
@@ -89,5 +100,13 @@ public class EmployeeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public Double[] string2latlong(String s){
+        String[] arrOfStr = s.split(",", 2);
+        Double[] arrOfDouble = new Double[2];
+        arrOfDouble[0] = Double.parseDouble(arrOfStr[0]);
+        arrOfDouble[1] = Double.parseDouble(arrOfStr[1]);
+        return arrOfDouble;
     }
 }
