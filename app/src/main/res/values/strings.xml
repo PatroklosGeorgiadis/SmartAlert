@@ -18,4 +18,5 @@
         <item>User</item>
         <item>Employee</item>
     </string-array>
+    <string name="danger_level_prompt">Danger level: </string>
 </resources>
