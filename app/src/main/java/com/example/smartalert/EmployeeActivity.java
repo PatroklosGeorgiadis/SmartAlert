@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 public class EmployeeActivity extends AppCompatActivity {
     LinearLayout layout;
@@ -73,6 +77,9 @@ public class EmployeeActivity extends AppCompatActivity {
         }
 
         Double[] lat_long1 = string2latlong(d.child("Location").getValue().toString());
+
+        //get category in english for comparison
+        String en_for_d = categoryToEnglish(d.child("Emergency").getValue().toString());
         for(DataSnapshot c : snapshot.getChildren()){
             String dtc = c.child("TimeStamp").getValue().toString();
             try {
@@ -91,12 +98,15 @@ public class EmployeeActivity extends AppCompatActivity {
             y = (lat_long2[0]-lat_long1[0]);
             distance = Math.sqrt(x*x + y*y) * Radius;  // distance in km
 
+            //get category in english for comparison
+            String en_for_c = categoryToEnglish(c.child("Emergency").getValue().toString());
+
             /*Checking if: a) these reports are from different users or not
              * b) they are the same type of emergency
              * c) they've been reported in a time period of 30 minutes
              * d) they have a proximity of 3 kilometers*/
             if(!d.getKey().equals(c.getKey())
-                    &&d.child("Emergency").getValue().toString().equals(c.child("Emergency").getValue().toString())
+                    &&en_for_d.equals(en_for_c)
                     &&Math.abs(time)<1800000
                     &&distance<3){
                 danger_level = danger_level+1;
@@ -149,4 +159,30 @@ public class EmployeeActivity extends AppCompatActivity {
         arrOfDouble[1] = Double.parseDouble(arrOfStr[1]);
         return arrOfDouble;
     }
+
+    public String categoryToEnglish(String category){
+        if(Objects.equals(category, getString(R.string.earthquakes))||
+                Objects.equals(category, getStringByLocal(this,R.string.earthquakes,"el"))){
+            category = getString(R.string.earthquakes);
+        }
+        else if(Objects.equals(category, getString(R.string.fire))||
+                Objects.equals(category, getStringByLocal(this,R.string.fire,"el"))){
+            category = getString(R.string.fire);
+        }
+        else if(Objects.equals(category, getString(R.string.flood))||
+                Objects.equals(category, getStringByLocal(this,R.string.flood,"el"))){
+            category =  getString(R.string.flood);
+        }
+        else if(Objects.equals(category, getString(R.string.tornado))||
+                Objects.equals(category, getStringByLocal(this,R.string.tornado,"el"))){
+            category = getString(R.string.tornado);
+        }
+        return category;
+    }
+    public String getStringByLocal(Activity context, int id, String locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(new Locale(locale));
+        return context.createConfigurationContext(configuration).getResources().getString(id);
+    }
+
 }
