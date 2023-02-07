@@ -95,11 +95,11 @@
 
                 <Button
                     android:id="@+id/reject"
-                    android:layout_width="107dp"
+                    android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="130dp"
+                    android:layout_marginStart="120dp"
                     android:layout_marginTop="105dp"
                     android:backgroundTint="#5C0011"
                     android:text="@string/reject" />

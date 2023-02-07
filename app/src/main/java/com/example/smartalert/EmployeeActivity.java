@@ -53,11 +53,11 @@ public class EmployeeActivity extends AppCompatActivity {
         });
     }
 
-    public int danger_level(DataSnapshot snapshot,DataSnapshot d){
+    public int danger_level(DataSnapshot snapshot, DataSnapshot d){
         int danger_level = 1;
 
         long timeC,timeD;
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy",Locale.ENGLISH);
         int Radius = 6371; // radius of the earth in km
         double x,y,distance;
 
