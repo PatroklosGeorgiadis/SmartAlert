@@ -49,11 +49,11 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            showMessage("Success!","User authenticated");
+                            showMessage(getString(R.string.success_title),getString(R.string.user_authenticated));
                             DatabaseReference ref2 = database.getReference("Users");
                             ref2.child(mAuth.getUid()).setValue(dropdown.getSelectedItem().toString());
                         }else {
-                            showMessage("Error",task.getException().getLocalizedMessage());
+                            showMessage(getString(R.string.error_title),task.getException().getLocalizedMessage());
                         }
                     }
                 });

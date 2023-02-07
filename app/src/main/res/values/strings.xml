@@ -21,4 +21,8 @@
     <string name="danger_level_prompt">Danger level: </string>
     <string name="validate">Validate</string>
     <string name="reject">Reject</string>
+    <string name="error_title">Error</string>
+    <string name="success_title">Success</string>
+    <string name="user_authenticated">User authenticated</string>
+    <string name="emergency_reported">Emergency has been reported</string>
 </resources>

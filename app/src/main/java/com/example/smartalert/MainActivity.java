@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    EditText email,password,data;
+    EditText email,password;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         email= findViewById(R.id.editTextTextPersonName2);
         password=findViewById(R.id.editTextTextPersonName3);
-        //data = findViewById(R.id.editTextTextPersonName3);
+
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
                                 if (!task.isSuccessful()) {
-                                    showMessage("Error","Unexpected error");
+                                    showMessage(getString(R.string.error_title),Objects.requireNonNull(task.getException()).getLocalizedMessage());
                                 }
                                 else {
                                     if(String.valueOf(task.getResult().getValue()).equals("Employee")){
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }else {
-                        showMessage("Error", Objects.requireNonNull(task.getException()).getLocalizedMessage());
+                        showMessage(getString(R.string.error_title), Objects.requireNonNull(task.getException()).getLocalizedMessage());
                     }
                 });
     }

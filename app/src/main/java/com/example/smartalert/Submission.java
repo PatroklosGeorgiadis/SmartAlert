@@ -58,13 +58,13 @@ public class Submission extends AppCompatActivity implements LocationListener {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         if (task.isSuccessful()) {
-                            showMessage("Success!", "Emergency has been reported");
+                            showMessage(getString(R.string.success_title),getString(R.string.emergency_reported) );
                             reference.child("Emergencies").child(ID).child("Emergency").setValue(emergency);
                             reference.child("Emergencies").child(ID).child("Details").setValue(details.getText().toString());
                             reference.child("Emergencies").child(ID).child("Location").setValue(location_data);
                             reference.child("Emergencies").child(ID).child("TimeStamp").setValue(currentTime.toString());
                         } else {
-                            showMessage("Error", task.getException().getLocalizedMessage());
+                            showMessage(getString(R.string.error_title), task.getException().getLocalizedMessage());
                         }
                     }
                 });

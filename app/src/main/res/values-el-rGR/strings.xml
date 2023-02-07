@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">SmartAlert</string>
     <string name="enter_your_email">Εισάγετε το email σας</string>
-    <string name="enter_your_password">Εισάγετε τον κωδικό πρόσβασης</string>
+    <string name="enter_your_password">Εισάγετε τον κωδικό σας</string>
     <string name="sign_up">Δημιουργία Λογαριασμού</string>
     <string name="sign_in">Συνδεθείτε</string>
     <string name="sign_up_tip">Αν δεν έχετε λογαριασμό, εγγραφείτε</string>
@@ -18,4 +18,8 @@
     <string name="danger_level_prompt">Επίπεδο κινδύνου: </string>
     <string name="validate">Eπικύρωση</string>
     <string name="reject">Απόρριψη</string>
+    <string name="error_title">Σφάλμα</string>
+    <string name="success_title">Επιτυχία</string>
+    <string name="user_authenticated">Ο χρήστης επικυρώθηκε</string>
+    <string name="emergency_reported">Η αναφορά του περιστατικού πραγματοποιήθηκε επιτυχώς</string>
 </resources>
