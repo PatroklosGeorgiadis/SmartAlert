@@ -19,4 +19,6 @@
         <item>Employee</item>
     </string-array>
     <string name="danger_level_prompt">Danger level: </string>
+    <string name="validate">Validate</string>
+    <string name="reject">Reject</string>
 </resources>

@@ -16,4 +16,6 @@
     <string name="name_some_details">Παρακαλώ αναφέρετε ορισμένες λεπτομέρειες σχετικά με την τρέχουσα κατάσταση</string>
     <string name="details_eaxmple">π.χ. Από εδώ εξαπλώνεται φωτιά προς τα ανατολικά</string>
     <string name="danger_level_prompt">Επίπεδο κινδύνου: </string>
+    <string name="validate">Eπικύρωση</string>
+    <string name="reject">Απόρριψη</string>
 </resources>
