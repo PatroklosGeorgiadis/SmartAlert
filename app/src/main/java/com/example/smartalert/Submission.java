@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,24 +21,29 @@ import android.widget.EditText;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 public class Submission extends AppCompatActivity implements LocationListener {
-    String ID,emergency,location_data;
+    String ID,emergency,location_data,toEng;
     EditText details;
     FirebaseDatabase database;
     LocationManager locationManager;
-    private int locationRequestCode;
+    private int locationRequestCode, num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
 
         database = FirebaseDatabase.getInstance();
+
         Intent prev_intent = getIntent();
         ID = prev_intent.getStringExtra("ID");
         emergency = prev_intent.getStringExtra("Emergency");
@@ -53,6 +60,16 @@ public class Submission extends AppCompatActivity implements LocationListener {
         DatabaseReference reference = database.getReference();
         locationFinder();
         Date currentTime = Calendar.getInstance().getTime();
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                toEng = categoryToEnglish(emergency);
+                num = Integer.parseInt(snapshot.child("ReportsData").child(toEng).getValue().toString());
+                num = num + 1;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
         reference.get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
@@ -63,6 +80,7 @@ public class Submission extends AppCompatActivity implements LocationListener {
                             reference.child("Emergencies").child(ID).child("Details").setValue(details.getText().toString());
                             reference.child("Emergencies").child(ID).child("Location").setValue(location_data);
                             reference.child("Emergencies").child(ID).child("TimeStamp").setValue(currentTime.toString());
+                            reference.child("ReportsData").child(toEng).setValue(String.valueOf(num));
                         } else {
                             showMessage(getString(R.string.error_title), task.getException().getLocalizedMessage());
                         }
@@ -102,5 +120,31 @@ public class Submission extends AppCompatActivity implements LocationListener {
                         finish();
                     }
                 }).show();
+    }
+
+    public String categoryToEnglish(String category){
+        if(Objects.equals(category, getString(R.string.earthquakes))||
+                Objects.equals(category, getStringByLocal(this,R.string.earthquakes,"el"))){
+            category = "Earthquake";
+        }
+        else if(Objects.equals(category, getString(R.string.fire))||
+                Objects.equals(category, getStringByLocal(this,R.string.fire,"el"))){
+            category = "Fire";
+        }
+        else if(Objects.equals(category, getString(R.string.flood))||
+                Objects.equals(category, getStringByLocal(this,R.string.flood,"el"))){
+            category =  "Flood";
+        }
+        else if(Objects.equals(category, getString(R.string.tornado))||
+                Objects.equals(category, getStringByLocal(this,R.string.tornado,"el"))){
+            category = "Tornado";
+        }
+        return category;
+    }
+
+    public String getStringByLocal(Activity context, int id, String locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(new Locale(locale));
+        return context.createConfigurationContext(configuration).getResources().getString(id);
     }
 }

@@ -22,4 +22,10 @@
     <string name="success_title">Επιτυχία</string>
     <string name="user_authenticated">Ο χρήστης επικυρώθηκε</string>
     <string name="emergency_reported">Η αναφορά του περιστατικού πραγματοποιήθηκε επιτυχώς</string>
+    <string name="total_reports">Συνολικές Αναφορές: </string>
+    <string name="reports_for_tornadoes">Αναφορές ανεμοστρόβιλων: </string>
+    <string name="reports_for_fire">Αναφορές για πυρκαγιές: </string>
+    <string name="reports_for_earthquakes">Αναφορές για σεισμούς: </string>
+    <string name="reports_for_floods">Αναφορές για πλημμύρες: </string>
+    <string name="zero">0</string>
 </resources>

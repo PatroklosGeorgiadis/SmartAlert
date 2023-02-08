@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void go_view_stats(View view){
+        Intent intent = new Intent(MainActivity.this, Statistics.class);
+        startActivity(intent);
+    }
+
     void showMessage(String title, String message){
         new AlertDialog.Builder(this).setTitle(title).setMessage(message).setCancelable(true).show();
     }

@@ -176,6 +176,7 @@ public class EmployeeActivity extends AppCompatActivity {
         }
         return category;
     }
+
     public String getStringByLocal(Activity context, int id, String locale) {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));

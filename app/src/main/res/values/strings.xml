@@ -25,4 +25,10 @@
     <string name="success_title">Success</string>
     <string name="user_authenticated">User authenticated</string>
     <string name="emergency_reported">Emergency has been reported</string>
+    <string name="total_reports">Total Reports: </string>
+    <string name="reports_for_tornadoes">Reports for tornadoes: </string>
+    <string name="reports_for_fire">Reports for fire: </string>
+    <string name="reports_for_earthquakes">Reports for earthquakes: </string>
+    <string name="reports_for_floods">Reports for floods: </string>
+    <string name="zero">0</string>
 </resources>
