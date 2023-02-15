@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SignUp extends AppCompatActivity {
 
@@ -44,6 +45,13 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void signup(View view){
+        if(dropdown.getSelectedItem().toString().equals("User")){
+            FirebaseMessaging.getInstance().subscribeToTopic("danger")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {}
+                    });
+        }
         mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

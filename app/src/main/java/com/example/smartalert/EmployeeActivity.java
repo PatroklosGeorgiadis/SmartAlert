@@ -38,14 +38,14 @@ public class EmployeeActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
-        reference.child("Emergencies").addValueEventListener(new ValueEventListener() {
+        reference.child("Emergencies").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot card : snapshot.getChildren()){
-
                     addCard(card.getKey(),card.child("Emergency").getValue().toString(),
                             card.child("Location").getValue().toString(),card.child("TimeStamp").getValue().toString(),
                             card.child("Details").getValue().toString(),String.valueOf(danger_level(snapshot,card)));
+
                 }
             }
             @Override
@@ -130,7 +130,11 @@ public class EmployeeActivity extends AppCompatActivity {
         String danger = getString(R.string.danger_level_prompt)+level;
         nameView5.setText(danger);
 
+        String reporting = timestamp + "\n" + description + " at: \n" + location;
         edit.setOnClickListener(v -> {
+            FcmNotifications notification = new FcmNotifications("/topics/danger",category,reporting,
+                    getApplicationContext(),EmployeeActivity.this);
+            notification.SendNotifications();
             layout.removeView(view);
             deleter(key);
         });
@@ -146,7 +150,7 @@ public class EmployeeActivity extends AppCompatActivity {
 
     public void deleter(String key){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("Emergencies").child(key).removeValue();
+        ref.child("Emergencies").child(key).removeValue(null);
     }
 
     public Double[] string2latlong(String s){
