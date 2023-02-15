@@ -90,7 +90,6 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="105dp"
                     android:backgroundTint="#0C600F"
-                    android:onClick="@string/title_activity_notification"
                     android:text="@string/validate"
                     android:textSize="12sp" />
 
