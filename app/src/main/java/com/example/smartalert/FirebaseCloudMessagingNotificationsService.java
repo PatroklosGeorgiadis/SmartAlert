@@ -39,7 +39,7 @@ public class FirebaseCloudMessagingNotificationsService extends FirebaseMessagin
             System.out.println("Message data payload: " + remoteMessage.getData());
         }
 
-        String[] array = remoteMessage.getNotification().getBody().split("at: \n ");
+        String[] array = remoteMessage.getNotification().getBody().split(" At: \n");
         //sendNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
 
 

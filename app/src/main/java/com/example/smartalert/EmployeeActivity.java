@@ -143,7 +143,7 @@ public class EmployeeActivity extends AppCompatActivity {
         }
         else if(english_cat.equals(getString(R.string.fire))){
             message = "Μήνυμα Πολιτικής Προστασίας: Λόγω επικίνδυνης πυρκαγιάς\n" +
-                    "μειώστε την καύση ύλη γύρω από το σπίτι σας, εγκαταλείψτε το κτίριο αν\n" +
+                    "μειώστε την καύσιμη ύλη γύρω από το σπίτι σας, εγκαταλείψτε το κτίριο αν\n" +
                     "η φυγή σας είναι πλήρως εξασφαλισμένη. Civil Protection Message: Due to dangerous fire\n" +
                     "reduce burning matter around your home, leave the building if\n" +
                     "your escape is fully assured.";
@@ -161,7 +161,7 @@ public class EmployeeActivity extends AppCompatActivity {
                     "limit your movements. Avoid work that may cause fire\n" +
                     "Follow the instructions of the authorities.";
         }
-        String reporting = timestamp + "\n" + message + " at: \n" + location;
+        String reporting = timestamp + "\n" + message + " At: \n" + location;
         edit.setOnClickListener(v -> {
             FcmNotifications notification = new FcmNotifications("/topics/danger",category,reporting,
                     getApplicationContext(),EmployeeActivity.this);
