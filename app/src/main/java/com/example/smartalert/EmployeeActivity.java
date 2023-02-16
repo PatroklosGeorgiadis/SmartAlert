@@ -133,16 +133,33 @@ public class EmployeeActivity extends AppCompatActivity {
         String message = "";
         String english_cat = categoryToEnglish(category);
         if(english_cat.equals(getString(R.string.earthquakes))){
-            message = "";
+            message = "Μήνυμα Πολιτικής Προστασίας: Διατηρείστε την ψυχραιμία σας.\n" +
+                    "Καλυφθείτε κάτω από κάποιο ανθεκτικό έπιπλο (τραπέζι, γραφείο) \n" +
+                    "γονατίστε και κρατήστε με τα χέρια σας το πόδι του ενώ σε καμία περίπτωση μην προσπαθήσετε\n" +
+                    "να απομακρυνθείτε από το σπίτι. Civil Protection Message: Keep calm.\n" +
+                    "Take cover under some sturdy furniture (table, desk)\n" +
+                    "kneel down and hold his leg with your hands while under no circumstances trying\n" +
+                    "to move away from home.";
         }
         else if(english_cat.equals(getString(R.string.fire))){
-            message = "";
+            message = "Μήνυμα Πολιτικής Προστασίας: Λόγω επικίνδυνης πυρκαγιάς\n" +
+                    "μειώστε την καύση ύλη γύρω από το σπίτι σας, εγκαταλείψτε το κτίριο αν\n" +
+                    "η φυγή σας είναι πλήρως εξασφαλισμένη. Civil Protection Message: Due to dangerous fire\n" +
+                    "reduce burning matter around your home, leave the building if\n" +
+                    "your escape is fully assured.";
         }
         else if(english_cat.equals(getString(R.string.flood))){
-            message = "";
+            message = "Μήνυμα Πολιτικής Προστασίας: Λόγω σφοδρής βροχόπτωσης περιορίστε τις\n" +
+                    "μετακινήσεις σας και αποφύγετε την εργασία και την παραμονή σε υπόγειους χώρους.\n" +
+                    "Civil Protection Message: Due to heavy rainfall limit it\n" +
+                    "your movements and avoid working and staying in underground spaces.";
         }
         else if(english_cat.equals(getString(R.string.tornado))){
-            message = "";
+            message = "Μήνυμα Πολιτικής Προστασίας: Λόγω ακραίων καιρικών ανέμων \n" +
+                    "περιορίστε τις μετακινήσεις σας. Αποφύγετε εργασίες που ενδέχεται να προκαλέσουν πυρκαγιά \n" +
+                    "Ακολουθήστε τις οδηγίες των αρχών. Civil Protection Message: Due to extreme winds\n" +
+                    "limit your movements. Avoid work that may cause fire\n" +
+                    "Follow the instructions of the authorities.";
         }
         String reporting = timestamp + "\n" + message + " at: \n" + location;
         edit.setOnClickListener(v -> {
