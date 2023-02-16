@@ -49,7 +49,9 @@ public class SignUp extends AppCompatActivity {
             FirebaseMessaging.getInstance().subscribeToTopic("danger")
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {}
+                        public void onComplete(@NonNull Task<Void> task) {
+                           // System.out.println(task.getResult() + " ok");
+                        }
                     });
         }
         mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
