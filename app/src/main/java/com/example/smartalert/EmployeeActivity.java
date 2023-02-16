@@ -130,7 +130,21 @@ public class EmployeeActivity extends AppCompatActivity {
         String danger = getString(R.string.danger_level_prompt)+level;
         nameView5.setText(danger);
 
-        String reporting = timestamp + "\n" + description + " at: \n" + location;
+        String message = "";
+        String english_cat = categoryToEnglish(category);
+        if(english_cat.equals(getString(R.string.earthquakes))){
+            message = "";
+        }
+        else if(english_cat.equals(getString(R.string.fire))){
+            message = "";
+        }
+        else if(english_cat.equals(getString(R.string.flood))){
+            message = "";
+        }
+        else if(english_cat.equals(getString(R.string.tornado))){
+            message = "";
+        }
+        String reporting = timestamp + "\n" + message + " at: \n" + location;
         edit.setOnClickListener(v -> {
             FcmNotifications notification = new FcmNotifications("/topics/danger",category,reporting,
                     getApplicationContext(),EmployeeActivity.this);
