@@ -8,71 +8,116 @@
 
     <Button
         android:id="@+id/button26"
-        android:layout_width="184dp"
-        android:layout_height="64dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:onClick="go_submission"
         android:text="@string/tornado"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeStepGranularity="10sp"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/button28" />
 
     <Button
         android:id="@+id/button27"
-        android:layout_width="184dp"
-        android:layout_height="64dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="#5C3802"
         android:onClick="go_submission"
         android:text="@string/earthquakes"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeStepGranularity="10sp"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/button26"
         tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/button28"
-        android:layout_width="184dp"
-        android:layout_height="64dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="#7C0C0C"
         android:onClick="go_submission"
         android:text="@string/fire"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeStepGranularity="12sp"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/button25" />
 
     <Button
         android:id="@+id/button25"
-        android:layout_width="184dp"
-        android:layout_height="64dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="#0474CD"
         android:onClick="go_submission"
         android:text="@string/flood"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeStepGranularity="12sp"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="252dp"
-        android:layout_height="88dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="50dp"
         android:text="@string/choosing_natural_disaster"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeMinTextSize="16sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextSizeCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.73" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.27" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
 </androidx.constraintlayout.widget.ConstraintLayout>

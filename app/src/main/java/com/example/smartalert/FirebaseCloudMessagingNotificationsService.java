@@ -1,10 +1,7 @@
 package com.example.smartalert;
 
-import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
-import android.os.IBinder;
+import android.os.Looper;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -21,14 +18,11 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 public class FirebaseCloudMessagingNotificationsService extends FirebaseMessagingService implements LocationListener {
 
     String location_data;
     LocationManager locationManager;
-    private int locationRequestCode;
 
 
     @Override
@@ -37,11 +31,9 @@ public class FirebaseCloudMessagingNotificationsService extends FirebaseMessagin
         if (remoteMessage.getData().size() > 0) {
             System.out.println("Message data payload: " + remoteMessage.getData());
         }
+        String[] array = remoteMessage.getNotification().getBody().split(" at: \n");
 
-        String[] array = remoteMessage.getNotification().getBody().split("at: \n ");
         //sendNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
-
-
 
         locationFinder();
         Double[] lat_long2 = string2latlong(array[1]);
@@ -93,12 +85,14 @@ public class FirebaseCloudMessagingNotificationsService extends FirebaseMessagin
         location_data = location.getLatitude() + "," + location.getLongitude();
     }
     public void locationFinder() {
-        locationRequestCode = 123;
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        Looper.prepare();
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        //locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,this);
         Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         location_data = loc.getLatitude()+","+loc.getLongitude();
     }

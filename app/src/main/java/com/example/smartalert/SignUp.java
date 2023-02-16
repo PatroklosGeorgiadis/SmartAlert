@@ -5,9 +5,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -39,6 +41,12 @@ public class SignUp extends AppCompatActivity {
 
         email= findViewById(R.id.editTextTextPersonName);
         password=findViewById(R.id.editTextTextPersonName4);
+        if (email.getTextSize()< 18){
+            email.setTextSize(18);
+        }
+        else{
+
+        }
         //role = findViewById(R.id.editTextTextPersonName3);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
