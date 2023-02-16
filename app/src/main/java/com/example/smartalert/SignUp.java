@@ -41,12 +41,6 @@ public class SignUp extends AppCompatActivity {
 
         email= findViewById(R.id.editTextTextPersonName);
         password=findViewById(R.id.editTextTextPersonName4);
-        if (email.getTextSize()< 18){
-            email.setTextSize(18);
-        }
-        else{
-
-        }
         //role = findViewById(R.id.editTextTextPersonName3);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
