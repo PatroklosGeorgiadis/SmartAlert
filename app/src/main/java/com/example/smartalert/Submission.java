@@ -102,6 +102,7 @@ public class Submission extends AppCompatActivity implements LocationListener {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},locationRequestCode);
             return;
         }
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         location_data = loc.getLatitude()+","+loc.getLongitude();
